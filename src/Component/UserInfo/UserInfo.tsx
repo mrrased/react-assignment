@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { redirect, useNavigate } from 'react-router-dom';
 
 
 const columns: GridColDef[] = [
@@ -36,47 +37,54 @@ const columns: GridColDef[] = [
     },
   ];
 
-
-// const rows = [
-//     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-//     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-//     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-//     { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-//     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-//     { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-//     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-//     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-//     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-//   ];
+  
 
 const UserInfo = () => {
 
-    const [user, setUser] = useState([]);
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
 
+  interface Post {
+    name: string;
+    email: string;
+    number: string;
+  }
 
-    useEffect(()=>{
+  const userInfos:Post = JSON.parse(localStorage.getItem('user_info')!);
 
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then(data => setUser(data))
+  if(!userInfos){
+    console.log('its working');
+     navigate('/')
+    // navigate('/');
+    // redirect("/");
+  }
 
-    },[])
+
+  useEffect(()=>{
+
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUser(data))
+
+  },[])
 
 
-    return (
-        <Box sx={{ height: 400, width: 850 }}>
-            <DataGrid
-                rows={user}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-                disableSelectionOnClick
-                experimentalFeatures={{ newEditingApi: true }}
-            />
-        </Box>
-    );
+  return (
+    <>
+      <Box sx={{ height: 400, width: 850 }}>
+          <DataGrid
+              rows={user}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+              disableSelectionOnClick
+              experimentalFeatures={{ newEditingApi: true }}
+          />
+      </Box>
+    </>
+  );
 };
 
 export default UserInfo;
