@@ -3,13 +3,16 @@ import { Button, TextField, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-    const [name, setName] = useState(String);
-    const [email, setEmail] = useState(String);
-    const [number, setNumber] = useState(String);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [number, setNumber] = useState('');
+
+
+    const navigate = useNavigate();
 
 
 
@@ -18,7 +21,14 @@ const Register = () => {
 
         const objectData = { name, email, number }
 
-        localStorage.setItem('user_info', JSON.stringify(objectData))
+        localStorage.removeItem('user_info');
+
+        localStorage.setItem('user_info', JSON.stringify(objectData));
+
+        alert('registration Successful');
+
+        navigate('/')
+
     }
 
 

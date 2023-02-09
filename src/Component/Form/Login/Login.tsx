@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
-import { Button, Link, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-    const [name, setName] = useState(String);
-    const [email, setEmail] = useState(String);
-    const [number, setNumber] = useState(String);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [number, setNumber] = useState('');
+
+
+    const navigate = useNavigate();
     
 
     const handleSubmit = ( e: any ) =>{
         e.preventDefault();
 
-        const objectData = { name, email, number }
 
-        localStorage.setItem('user_info', JSON.stringify(objectData))
+        const localData = JSON.parse(localStorage.getItem('user_info')!)
+
+        if( localData.name === name ){
+
+            if(localData.email === email){
+
+                if(localData.number === number){
+
+                    navigate('/user-info');
+                }
+                else{
+                    alert('Enter The Currect Number');
+                }
+            }
+            else{
+                alert('Enter The Currect Email');
+            }
+        }
+        else{
+            alert('Enter The Currect Name')
+        }
     }
+
 
 
     return (
@@ -27,7 +50,7 @@ const Login = () => {
 
             <Card sx={{padding: "10px 5px", maxWidth: 450, margin:" 0 auto"}}>
                 <CardContent>
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={ handleSubmit } >
                         <Grid container spacing={1}>
                             <Grid xs={12}  item >
 

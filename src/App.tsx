@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Register from './Component/Form/Register/Register';
 import Login from './Component/Form/Login/Login';
+import UserInfo from './Component/UserInfo/UserInfo';
 
 function App() {
   
@@ -21,8 +22,8 @@ function App() {
       element: <Register />,
     },
     {
-      path: "/contact",
-      element: <div>This is contact page</div>,
+      path: "/user-info",
+      element: <UserInfo />,
     },
   ]);
 
