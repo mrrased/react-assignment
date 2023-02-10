@@ -42,23 +42,6 @@ const columns: GridColDef[] = [
 const UserInfo = () => {
 
   const [user, setUser] = useState([]);
-  const navigate = useNavigate();
-
-
-  interface Post {
-    name: string;
-    email: string;
-    number: string;
-  }
-
-  const userInfos:Post = JSON.parse(localStorage.getItem('user_info')!);
-
-  if(!userInfos){
-    console.log('its working');
-     navigate('/')
-    // navigate('/');
-    // redirect("/");
-  }
 
 
   useEffect(()=>{

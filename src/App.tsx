@@ -9,6 +9,7 @@ import {
 import Register from './Component/Form/Register/Register';
 import Login from './Component/Form/Login/Login';
 import UserInfo from './Component/UserInfo/UserInfo';
+import PrivateRoute from './Hooks/PrivateRoute';
 
 function App() {
   
@@ -23,7 +24,7 @@ function App() {
     },
     {
       path: "/user-info",
-      element: <UserInfo />,
+      element: <PrivateRoute><UserInfo/></PrivateRoute> ,
     },
   ]);
 

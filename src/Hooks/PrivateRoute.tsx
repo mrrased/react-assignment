@@ -10,13 +10,15 @@ const PrivateRoute = ({ children }: Props) =>{
 
     const location = useLocation();
 
-    if(false){
 
-        
-    }
-    if(true){
 
-        return children
+    const localData = JSON.parse(localStorage.getItem('user_info')!)
+
+    
+
+    if(localData){
+
+        return <>{children}</> 
     }
 
     return <Navigate to="/" state={{ from: location }} replace />
