@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { redirect, useNavigate } from 'react-router-dom';
 
 
 const columns: GridColDef[] = [
@@ -37,18 +36,26 @@ const columns: GridColDef[] = [
     },
   ];
 
-  
 
-const UserInfo = () => {
 
-  const [user, setUser] = useState([]);
+  interface Post {
+    id: number;
+    name: string;
+    username: string;
+    website: string;
+    email: string
+  }
+
+const List = () => {
+
+  const [user, setUser] = useState<Post[]>([]);
 
 
   useEffect(()=>{
 
       fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
-      .then(data => setUser(data))
+      .then((data) => setUser(data))
 
   },[])
 
@@ -70,4 +77,4 @@ const UserInfo = () => {
   );
 };
 
-export default UserInfo;
+export default List;

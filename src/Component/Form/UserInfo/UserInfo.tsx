@@ -3,9 +3,9 @@ import { Button, TextField, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const UserInfo = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,18 +16,15 @@ const Register = () => {
 
 
 
-    const handleSubmit = ( e: any ) =>{
+    const handleSubmit = ( e: React.FormEvent<HTMLFormElement> ) =>{
         e.preventDefault();
 
         const objectData = { name, email, number }
 
-        localStorage.removeItem('user_info');
 
         localStorage.setItem('user_info', JSON.stringify(objectData));
 
-        alert('registration Successful');
-
-        navigate('/')
+        navigate('/user-info');
 
     }
 
@@ -35,12 +32,13 @@ const Register = () => {
 
     return (
         <div>
-            <Typography>Register</Typography>
+            <Typography>Enter your information</Typography>
 
             <Card sx={{padding: "10px 5px", maxWidth: 450, margin:" 0 auto"}}>
                 <CardContent>
                     <form onSubmit={handleSubmit} >
                         <Grid container spacing={1}>
+
                             <Grid xs={12}  item >
 
                                 <TextField
@@ -89,10 +87,10 @@ const Register = () => {
                                     variant='contained' 
                                     color='primary' 
                                     fullWidth
-                                >register</Button>
+                                >Save</Button>
 
                             </Grid>
-                            <Typography sx={{mt:2}}>allready register <NavLink to='/' >Click here..</NavLink></Typography>
+                        
                         </Grid>
                     </form>
                 </CardContent>
@@ -101,4 +99,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default UserInfo;

@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { Button } from '@mui/material'
+import React from 'react';
+import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Register from './Component/Form/Register/Register';
-import Login from './Component/Form/Login/Login';
-import UserInfo from './Component/UserInfo/UserInfo';
+import UserInfo from './Component/Form/UserInfo/UserInfo';
+import List from './Component/UserInfo/List';
 import PrivateRoute from './Hooks/PrivateRoute';
 
 function App() {
@@ -16,15 +13,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
+      element: <UserInfo />,
     },
     {
       path: "/user-info",
-      element: <PrivateRoute><UserInfo/></PrivateRoute> ,
+      element: <PrivateRoute><List/></PrivateRoute> ,
     },
   ]);
 
