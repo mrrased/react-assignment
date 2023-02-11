@@ -9,20 +9,14 @@ interface Props {
 const PrivateRoute = ({ children }: Props) =>{
 
     const location = useLocation();
-
-
     const localData = JSON.parse(localStorage.getItem('user_info')!)
 
-
     if(localData){
-
         return <>{children}</> 
     }
 
-
     alert('Before access this page must be enter your information')
     
-
     return <Navigate to="/" state={{ from: location }} replace />
 
 }

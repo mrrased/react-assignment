@@ -15,7 +15,6 @@ interface formType {
 const UserInfo = () => {
 
     const [inputValue, setInputValue] = useState<formType>({
-        
         name: "",
         email: "",
         number: ""
@@ -25,26 +24,20 @@ const UserInfo = () => {
     const navigate = useNavigate();
 
 
+    // Handle Change Function
     const InputValue = (e: React.ChangeEvent<HTMLInputElement>): void =>{
-        
         setInputValue({
-                ...inputValue,
-                [e.target.name]: e.target.value,
+            ...inputValue,
+            [e.target.name]: e.target.value,
         });
-
     };
-    // 
-
-
+     
+    // Form handling Area
     const handleSubmit = ( e: React.FormEvent<HTMLFormElement>): void =>{
         e.preventDefault();
-
         localStorage.setItem('user_info', JSON.stringify(inputValue));
-
         navigate('/list');
-
     }
-
 
 
     return (

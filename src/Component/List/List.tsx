@@ -37,7 +37,7 @@ const columns: GridColDef[] = [
   ];
 
 
-
+  // type 
   interface Post {
     id: number;
     name: string;
@@ -50,13 +50,11 @@ const List = () => {
 
   const [user, setUser] = useState<Post[]>([]);
 
-
+  // Fetach User Data
   useEffect(()=>{
-
       fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then((data) => setUser(data))
-
   },[])
 
 
