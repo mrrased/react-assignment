@@ -5,24 +5,46 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
 
+
+interface formType {
+    user:{
+        name: string;
+        email: string;
+        number: string;
+    }
+}
+
 const UserInfo = () => {
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [number, setNumber] = useState('');
+    const [inputValue, setInputValue] = useState<formType>({
+        user: {
+            name: "",
+            email: "",
+            number: ""
+        },
+    });
 
 
     const navigate = useNavigate();
 
 
+    const InputValue = (e: React.ChangeEvent<HTMLInputElement>): void =>{
+        
+        setInputValue({
+            user: {
+                ...inputValue.user,
+                [e.target.name]: e.target.value,
+            },
+        });
 
-    const handleSubmit = ( e: React.FormEvent<HTMLFormElement> ) =>{
+    };
+    // 
+
+
+    const handleSubmit = ( e: React.FormEvent<HTMLFormElement>): void =>{
         e.preventDefault();
 
-        const objectData = { name, email, number }
-
-
-        localStorage.setItem('user_info', JSON.stringify(objectData));
+        localStorage.setItem('user_info', JSON.stringify(inputValue.user));
 
         navigate('/list');
 
@@ -46,7 +68,8 @@ const UserInfo = () => {
                                     id="filled-basic" 
                                     label="Name" 
                                     variant="filled"
-                                    onChange={(e)=> setName(e.target.value)}
+                                    name="name"
+                                    onChange={ InputValue }
                                     fullWidth 
                                 />
 
@@ -60,7 +83,8 @@ const UserInfo = () => {
                                     label="Email" 
                                     type="email"
                                     variant="filled"
-                                    onChange={(e)=> setEmail(e.target.value)}
+                                    name="email"
+                                    onChange={ InputValue }
                                     fullWidth 
                                 />
 
@@ -74,7 +98,8 @@ const UserInfo = () => {
                                     label="Number" 
                                     type="number"
                                     variant="filled"
-                                    onChange={(e)=> setNumber(e.target.value)}
+                                    name="number"
+                                    onChange={ InputValue }
                                     fullWidth 
                                 />
 

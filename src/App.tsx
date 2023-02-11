@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import UserInfo from './Component/Form/UserInfo/UserInfo';
-import List from './Component/UserInfo/List';
+import List from './Component/List/List';
 import PrivateRoute from './Hooks/PrivateRoute';
 
 function App() {
