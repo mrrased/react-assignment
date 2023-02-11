@@ -7,21 +7,18 @@ import { useNavigate } from 'react-router-dom';
 
 
 interface formType {
-    user:{
         name: string;
         email: string;
         number: string;
-    }
 }
 
 const UserInfo = () => {
 
     const [inputValue, setInputValue] = useState<formType>({
-        user: {
-            name: "",
-            email: "",
-            number: ""
-        },
+        
+        name: "",
+        email: "",
+        number: ""
     });
 
 
@@ -31,10 +28,8 @@ const UserInfo = () => {
     const InputValue = (e: React.ChangeEvent<HTMLInputElement>): void =>{
         
         setInputValue({
-            user: {
-                ...inputValue.user,
+                ...inputValue,
                 [e.target.name]: e.target.value,
-            },
         });
 
     };
@@ -44,7 +39,7 @@ const UserInfo = () => {
     const handleSubmit = ( e: React.FormEvent<HTMLFormElement>): void =>{
         e.preventDefault();
 
-        localStorage.setItem('user_info', JSON.stringify(inputValue.user));
+        localStorage.setItem('user_info', JSON.stringify(inputValue));
 
         navigate('/list');
 
