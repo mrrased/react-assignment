@@ -24,7 +24,7 @@ const UserInfo = () => {
 
         localStorage.setItem('user_info', JSON.stringify(objectData));
 
-        navigate('/user-info');
+        navigate('/list');
 
     }
 

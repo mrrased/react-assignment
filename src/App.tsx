@@ -16,7 +16,7 @@ function App() {
       element: <UserInfo />,
     },
     {
-      path: "/user-info",
+      path: "/list",
       element: <PrivateRoute><List/></PrivateRoute> ,
     },
   ]);
